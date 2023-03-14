@@ -44,7 +44,7 @@ int main()
     }
     while(nota != 0);
     if(cantNotas>0){
-        promedio = totalNotas / cantNotas;
+        promedio = (float)totalNotas / cantNotas;
     }
     printf("\n====================================================");
     printf("\n La cantidad de notas ingresadas....: %d", cantNotas);
