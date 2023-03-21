@@ -10,29 +10,20 @@ int main()
     int totalNotas = 0;
     float promedio;
 
-    do
-    {
+    do {
         system("cls");
         printf("\n Ingrese un a nota: ");
         scanf("%d", &nota);
 
-        if(nota!=0)
-        {
-            if(cantNotas==0)
-            {
+        if(nota!=0) {
+            if(cantNotas==0) {
                 menor = nota;
                 mayor = nota;
-            }
-            else
-            {
-                if(nota<menor)
-                {
+            }else {
+                if(nota<menor) {
                     menor = nota;
-                }
-                else
-                {
-                    if(nota>mayor)
-                    {
+                }else {
+                    if(nota>mayor) {
                         mayor = nota;
                     }
                 }
@@ -43,7 +34,7 @@ int main()
         }
     }
     while(nota != 0);
-    if(cantNotas>0){
+    if(cantNotas>0) {
         promedio = (float)totalNotas / cantNotas;
     }
     printf("\n====================================================");

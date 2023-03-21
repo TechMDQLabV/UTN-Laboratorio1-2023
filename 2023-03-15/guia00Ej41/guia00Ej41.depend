@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1678924741 source:d:\developer\c\2023 - programacion 1\utn-laboratorio1-2023\2023-03-15\guia00ej41\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+
