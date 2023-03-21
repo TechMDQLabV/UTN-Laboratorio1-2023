@@ -15,7 +15,7 @@ int main()
         apilar(&pilita,rand()%100);
     }
 
-    printf("<<<<<<<<<<<<<<<<< Pila pilita >>>>>>>>>>>>>>>>>>>>\n");
+    printf("<<<<<<<<<<<<<<<<< Pila pilita antes de while >>>>>>>>>>>>>>>>>>>>\n");
     mostrar(&pilita);
 
     while(!pilavacia(&pilita)){
