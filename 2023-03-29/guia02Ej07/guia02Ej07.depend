@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1680125984 source:d:\developer\c\2023 - programacion 1\utn-laboratorio1-2023\2023-03-29\guia02ej07\main.c
+	<stdio.h>
+	<stdlib.h>
+	"pila.h"
+
+1672873986 d:\developer\c\2023 - programacion 1\utn-laboratorio1-2023\2023-03-29\guia02ej07\pila.h
+	<stdio.h>
+	<malloc.h>
+
+1672873986 source:d:\developer\c\2023 - programacion 1\utn-laboratorio1-2023\2023-03-29\guia02ej07\pila.c
+	"pila.h"
+
