@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1680645281 source:d:\developer\c\2023 - programacion 1\utn-laboratorio1-2023\2023-04-04\intercambiodevariables\main.c
+	<stdio.h>
+	<stdlib.h>
+

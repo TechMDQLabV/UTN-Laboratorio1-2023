@@ -4,7 +4,7 @@
 #include "pila.h"
 
 void cargaPilaRandom(Pila* p);
-void muestraPila(Pila c);
+void muestraPila(Pila c, char* titulo);
 
 int main()
 {
@@ -17,8 +17,8 @@ int main()
     int puntosJugador2=0;
 
     cargaPilaRandom(&mazo);
-    printf("\n <<<<<<<<<<<< Mazo >>>>>>>>>>>>");
-    muestraPila(mazo);
+    ///printf("\n <<<<<<<<<<<< Mazo >>>>>>>>>>>>");
+    muestraPila(mazo, "Mazo");
 
     while(!pilavacia(&mazo)){
         apilar(&jugador1, desapilar(&mazo));
@@ -47,9 +47,9 @@ int main()
     }
 
     printf("\n Pila puntos jugador1: %d", puntosJugador1);
-    muestraPila(jugador1);
+    muestraPila(jugador1, "Jugador 1");
     printf("\n Pila puntos jugador2: %d", puntosJugador2);
-    muestraPila(jugador2);
+    muestraPila(jugador2, "Jugador 2");
 
     return 0;
 }
@@ -60,10 +60,11 @@ void cargaPilaRandom(Pila* p){
     }
 }
 
-void muestraPila(Pila c){
+void muestraPila(Pila c, char* titulo){
     Pila aux;
     inicpila(&aux);
     int cont=0;
+    printf("\n <<<<<<<<<<<<< %s >>>>>>>>>>>>", titulo);
     while(!pilavacia(&c)){
         if(cont%15==0){
             printf("\n");
