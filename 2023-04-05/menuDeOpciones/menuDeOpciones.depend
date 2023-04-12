@@ -6,3 +6,16 @@
 	<stdio.h>
 	<malloc.h>
 
+1681337513 source:d:\developer\c\0 utn repositorios\utn-laboratorio1-2023\2023-04-05\menudeopciones\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	"pila.h"
+
+1680875293 d:\developer\c\0 utn repositorios\utn-laboratorio1-2023\2023-04-05\menudeopciones\pila.h
+	<stdio.h>
+	<malloc.h>
+
+1680875293 source:d:\developer\c\0 utn repositorios\utn-laboratorio1-2023\2023-04-05\menudeopciones\pila.c
+	"pila.h"
+

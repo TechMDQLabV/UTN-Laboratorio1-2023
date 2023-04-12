@@ -11,7 +11,12 @@ void replicante(char c, int cant);
 void cargaPila(Pila* p);
 void cargaPilaRandom(Pila* p, int cant);
 void cargaPilaOrdenada(Pila* p, int cant);
-void muestraPila(Pila c);
+void muestraPila(Pila c, char* titulo);
+int buscaMenor(Pila* p);
+void pasaPilaOrdenada(Pila* o, Pila* d);
+void pasaPila(Pila* o, Pila* d);
+void insertarEnOrden(Pila* ordenada, int dato);
+void ordenarPorInsercion(Pila* o, Pila* ordenada);
 
 int main()
 {
@@ -20,8 +25,10 @@ int main()
 }
 
 void menuDeOpciones(){
-    Pila temp;
+    Pila temp, ordenada;
     inicpila(&temp);
+    inicpila(&ordenada);
+
     char opcion;
     do{
         system("cls");
@@ -42,7 +49,23 @@ void menuDeOpciones(){
                     printf("\n Pila cargada con exito...");
                     break;
             case 52:
-                    muestraPila(temp);
+                    muestraPila(temp, "Temp");
+                    break;
+            case 53:
+                    if(!pilavacia(&temp)){
+                        muestraPila(temp, "Temp");
+                        printf("\n");
+                        pasaPilaOrdenada(&temp, &ordenada);
+                        muestraPila(ordenada, "Ordenada");
+
+                    }else{
+                        printf("La pila esta vacia");
+                    }
+
+                    break;
+            case 54:
+
+                    break;
         }
         getch();
     }while(opcion!=ESC);
@@ -57,6 +80,8 @@ void muestraOpciones(){
     printf("\n 2. Carga Pila random");
     printf("\n 3. Carga Pila ordenada");
     printf("\n 4. Muestra Pila");
+    printf("\n 5. Ordena por Seleccion");
+    printf("\n 6. Ordena por Insercion");
     printf("\n");
     printf("\n ESC para salir");
 }
@@ -94,10 +119,12 @@ void cargaPilaOrdenada(Pila* p, int cant){
     }
 }
 
-void muestraPila(Pila c){
+void muestraPila(Pila c, char* titulo){
     Pila aux;
     inicpila(&aux);
     int cont=0;
+
+    printf("<<<<<<<<< Pila %s >>>>>>>>>", titulo);
     while(!pilavacia(&c)){
         if(cont%15==0){
             printf("\n");
@@ -105,5 +132,86 @@ void muestraPila(Pila c){
         printf("%d - ", tope(&c));
         apilar(&aux, desapilar(&c));
         cont++;
+    }
+}
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
+int buscaMenor(Pila* p){
+    Pila aux;
+    inicpila(&aux);
+
+    int menor;
+
+    menor = desapilar(p);
+
+    while(!pilavacia(p)){
+        if(tope(p) < menor){
+            apilar(&aux, menor);
+            menor = desapilar(p);
+        }else{
+            apilar(&aux, desapilar(p));
+        }
+    }
+
+    pasaPila(&aux, p);
+
+    return menor;
+}
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
+
+void pasaPilaOrdenada(Pila* o, Pila* d){
+    while(!pilavacia(o)){
+        apilar(d, buscaMenor(o));
+    }
+}
+
+/** \brief Esta funcion pasa los datos de una pila a otra
+ *
+ * \param Puntero a pila origen
+ * \param Puntero a pila destino
+ * \return Sin retorno
+ *
+ */
+void pasaPila(Pila* o, Pila* d){
+    while(!pilavacia(o)){
+        apilar(d, desapilar(o));
+    }
+}
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
+
+void insertarEnOrden(Pila* ordenada, int dato){
+    Pila aux;
+    inicpila(&aux);
+
+    while(!pilavacia(ordenada) && tope(ordenada) > dato){
+        apilar(&aux, desapilar(ordenada));
+    }
+    apilar(ordenada, dato);
+    pasaPila(&aux, ordenada);
+}
+
+void ordenarPorInsercion(Pila* o, Pila* ordenada){
+    while(!pilavacia(o)){
+        insertarEnOrden(ordenada, desapilar(o));
     }
 }
