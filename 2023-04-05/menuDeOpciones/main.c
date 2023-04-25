@@ -25,6 +25,7 @@ int main()
 }
 
 void menuDeOpciones(){
+    srand(time(NULL));
     Pila temp, ordenada;
     inicpila(&temp);
     inicpila(&ordenada);
@@ -53,15 +54,14 @@ void menuDeOpciones(){
                     break;
             case 53:
                     if(!pilavacia(&temp)){
-                        muestraPila(temp, "Temp");
                         printf("\n");
+                        muestraPila(temp, "Temp");
                         pasaPilaOrdenada(&temp, &ordenada);
+                        printf("\n");
                         muestraPila(ordenada, "Ordenada");
-
                     }else{
-                        printf("La pila esta vacia");
+                        printf("\nLa pila esta vacia");
                     }
-
                     break;
             case 54:
 
