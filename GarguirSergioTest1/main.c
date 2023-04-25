@@ -6,6 +6,7 @@
 #define DIM_NOTAS 100
 #define ESC 27
 
+int randomRangoInt(int min, int max);
 int cargaNotasInt(int a[], int v, int dim);
 int cargaArreglRandomInt(int a[], int dim, int cant);
 void muestraArregloInt(int a[], int v);
@@ -31,6 +32,11 @@ int main()
     }
     return 0;
 }
+
+int randomRangoInt(int min, int max){
+    return rand()%(max-min)+min;
+}
+
 
 /** \brief Carga un arreglo de notas con intervencion del usuario validando la carga entre 1 y 10
  *
@@ -76,7 +82,7 @@ int cargaArreglRandomInt(int a[], int dim, int cant){
     int i=0;
     if(cant <= dim){
         for(i=0;i<cant;i++){
-            a[i]=rand()%11;
+            a[i]=randomRangoInt(1,10);
         }
     }
     return i;
