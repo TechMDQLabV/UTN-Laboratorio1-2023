@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <time.h>
+#include "pila.h"
 
 #define DIM_NOTAS 100
 #define ESC 27
@@ -11,6 +12,11 @@ int cargaNotasInt(int a[], int v, int dim);
 int cargaArreglRandomInt(int a[], int dim, int cant);
 void muestraArregloInt(int a[], int v);
 int buscaDatoEnArregloInt(int a[], int v, int dato);
+void arreglo2pila(int a[], int v, Pila* p);
+void arreglo2pila2(int a[], int v, Pila* p);
+void arreglo2pilaConFiltro(int a[], int v, Pila* p, int filtro);
+int pila2arregloConFiltro(Pila c, int a[], int dim, int filtro);
+int buscaPosicionMenorInt(int a[], int v);
 
 int main()
 {
@@ -18,18 +24,38 @@ int main()
 
     int notas[DIM_NOTAS];
     int vNotas = 0;
+    int menor;
+    Pila p;
+    inicpila(&p);
 
+    menor = buscaPosicionMenorInt(notas, vNotas);
+    if(menor > -1){
+        printf("\n <<<<<<<<<<<<<< Nota menor %d >>>>>>>>>>>>>>>>>>", notas[menor]);
+    }else{
+        printf("\n el arreglo esta vacio");
+    }
     vNotas = cargaArreglRandomInt(notas, DIM_NOTAS, 2);
     vNotas = cargaNotasInt(notas, vNotas, DIM_NOTAS);
     printf("\n <<<<<<<<<<<<<< Notas >>>>>>>>>>>>>>>>>>");
     muestraArregloInt(notas, vNotas);
-    int encontrado = buscaDatoEnArregloInt(notas, vNotas, 10);
 
+    printf("\n <<<<<<<<<<<<<< busqueda en arreglo del dato 10 >>>>>>>>>>>>>>>>>>");
+    int encontrado = buscaDatoEnArregloInt(notas, vNotas, 10);
     if(!encontrado){ /// encontrado==0
         printf("\n El dato no se encuentra en la coleccion");
     }else{
         printf("\n El dato se encuentra en la coleccion");
     }
+
+    printf("\n <<<<<<<<<<<<<< Pasaje de arreglo a pila con filtro >>>>>>>>>>>>>>>>>>");
+
+    arreglo2pilaConFiltro(notas, vNotas, &p, 6);
+    mostrar(&p);
+
+    printf("\n <<<<<<<<<<<<<< Pasaje de pila a arreglo con filtro >>>>>>>>>>>>>>>>>>");
+    vNotas = pila2arregloConFiltro(p, notas, DIM_NOTAS, 8);
+    muestraArregloInt(notas, vNotas);
+
     return 0;
 }
 
@@ -123,4 +149,60 @@ int buscaDatoEnArregloInt(int a[], int v, int dato){
         }
     }
     return flag;
+}
+
+void arreglo2pila(int a[], int v, Pila* p){
+    for(int i=0;i<v;i++){
+        apilar(p, a[i]);
+    }
+}
+
+void arreglo2pila2(int a[], int v, Pila* p){
+    int i=0;
+    while(i<v && i<50){
+        apilar(p, a[i]);
+        i++;
+    }
+}
+
+void arreglo2pilaConFiltro(int a[], int v, Pila* p, int filtro){
+    int i=0;
+    while(i<v && i<50){
+        if(a[i]>filtro){
+            apilar(p, a[i]);
+        }
+        i++;
+    }
+}
+
+int pila2arregloConFiltro(Pila c, int a[], int dim, int filtro){
+    Pila basura;
+    inicpila(&basura);
+    int i=0;
+    while(!pilavacia(&c) && i<dim){
+        if(tope(&c)>filtro){
+            a[i]=desapilar(&c);
+            i++;
+        }else{
+            apilar(&basura, desapilar(&c));
+        }
+    }
+    return i;
+}
+
+int buscaPosicionMenorInt(int a[], int v){
+    int menor = (v>0) ? 0 : -1;
+   /** if(v>0){
+        menor = 0;
+    }else{
+        menor = -1;
+    }*/
+    int i=1;
+    while(i<v){
+        if(a[i]<a[menor]){
+            menor = i;
+        }
+        i++;
+    }
+    return menor;
 }
