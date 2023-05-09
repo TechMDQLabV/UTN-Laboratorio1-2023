@@ -1,10 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define NAMES_DIM 100
+
+int cargaStrings(char n[][20], int dim);
+void muestraStrings(char n[][20], int v);
+int cargaArreglos(int e[], char n[][20], char a[][30], char d[][13], int dim);
+
 int main()
 {
     char pal1[20];
     char pal2[20];
+    char names[NAMES_DIM][20];
+    int vNames=0;
+
+    vNames = cargaStrings(names, NAMES_DIM);
+    muestraStrings(names, vNames);
+
 
     printf("\n Ingrese una palabra: ");
     fflush(stdin);
@@ -24,4 +36,60 @@ int main()
     printf("\n pal1: %s - %d", pal1, strlen(pal1));
     printf("\n pal2: %s - %d", pal2, strlen(pal2));
     return 0;
+}
+
+int cargaStrings(char n[][20], int dim){
+    int i = 0;
+    char opcion = 0;
+
+    while(i<dim && opcion != 27){
+        system("cls");
+        printf("\n Ingrese un nombre: ");
+        fflush(stdin);
+        gets(n[i]);
+        i++;
+
+        printf("ESC para salir o cualquier tecla para continuar ...");
+        opcion = getch();
+    }
+
+    return i;
+}
+
+void muestraStrings(char n[][20], int v){
+    for(int i=0;i<v;i++){
+        printf("\n %s",n[i]);
+    }
+}
+
+int cargaArreglos(int e[], char n[][20], char a[][30], char d[][13], int dim){
+    int i = 0;
+    char opcion = 0;
+
+    while(i<dim && opcion != 27){
+        system("cls");
+
+        printf("\n Ingrese el nombre: ");
+        fflush(stdin);
+        gets(n[i]);
+
+        printf("\n Ingrese el apellido: ");
+        fflush(stdin);
+        gets(a[i]);
+
+        printf("\n Ingrese el DNI: ");
+        fflush(stdin);
+        gets(d[i]);
+
+        printf("\n Ingrese la edad: ");
+        scanf("%d", &e[i]);
+
+        i++;
+
+        printf("ESC para salir o cualquier tecla para continuar ...");
+        opcion = getch();
+    }
+
+    return i;
+
 }
