@@ -93,3 +93,40 @@ int cargaArreglos(int e[], char n[][20], char a[][30], char d[][13], int dim){
     return i;
 
 }
+
+int randomRango(int min, int max){
+    return rand()%(max-min)+min;
+}
+
+void getName(char n[]){
+    char names[][20]={"Amalio","Juan","Roberto","Antonio","Pedro","Fernando","Jacinto","Anibal","Antonio","Atalayo",
+                           "Bertino","Anastasio","Amor","Arturo","Diego","Mario","Tamaro","Adolfo","Alfonso","Pedro","Alfredo",
+                           "Rolando","Mauro","Amancio","Benicio","Bertin","Ildefonso","Amilcar","Cuchuflito","Jazmino",
+                           "Remilgo"};
+    strcpy(n, names[randomRango(0,sizeof(names)/sizeof(char)*20)]);
+}
+
+void getDni(char d[]){
+    itoa(randomRango(5000000,60000000),d,10);
+}
+
+
+void getAmbos(char a[]){
+    a[0]='\0';
+    char name[];
+    char lastName[];
+
+    getName(name);
+    getLastName(lastName);
+
+    strcat(a, name);
+    strcat(a, ", ");
+    strcat(a, lastName);
+}
+
+
+
+
+
+
+
