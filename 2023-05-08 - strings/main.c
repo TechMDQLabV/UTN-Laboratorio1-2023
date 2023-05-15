@@ -103,7 +103,7 @@ void getName(char n[]){
                            "Bertino","Anastasio","Amor","Arturo","Diego","Mario","Tamaro","Adolfo","Alfonso","Pedro","Alfredo",
                            "Rolando","Mauro","Amancio","Benicio","Bertin","Ildefonso","Amilcar","Cuchuflito","Jazmino",
                            "Remilgo"};
-    strcpy(n, names[randomRango(0,sizeof(names)/sizeof(char)*20)]);
+    strcpy(n, names[randomRango(0,(sizeof(names)/sizeof(char))*20)]);
 }
 
 void getDni(char d[]){
