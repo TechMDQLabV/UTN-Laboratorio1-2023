@@ -124,9 +124,52 @@ void getAmbos(char a[]){
     strcat(a, lastName);
 }
 
+void ordenaPorSeleccionString(char a[][20], int v){
+    int posMenor=0;
+    char aux[20];
+    for(int i=0;i<v-1;i++){
+        posMenor = buscaPosMenorString(a, v, i);
+        strcpy(aux, a[posMenor]);
+        strcpy(a[posMenor], a[i]);
+        strcpy(a[i], aux);
+    }
+}
 
+int buscaPosMenorString(char a[][20], int v, int comienzo){
+    int i = comienzo;
+    int posMenor = i;
+    i++;
+    while(i<v){
+        if(strcmp(a[i],a[posMenor])<0){
+            posMenor = i;
+        }
+        i++;
+    }
+    return posMenor;
+}
 
+int buscaPosMenorStringConFor(char a[][20], int v, int comienzo){
+    int posMenor = comienzo;
+    comienzo++;
+    for(int i=comienzo;i<v;i++){
+        if(strcmp(a[i],a[posMenor])<0){
+            posMenor = i;
+        }
+    }
+    return posMenor;
+}
 
+void ordenaPorInsercionString(char a[][20], int v){
+    for(int i=0; i<v-1; i++){
+        insertarOrdenadoString(a, i, a[i+1]);
+    }
+}
 
-
-
+void insertarOrdenadoString(char a[][20], int v, char elemento[]){
+    int i = v;
+    while(i>=0 && strcmp(a[i], elemento)>0){
+        strcpy(a[i+1], a[i]);
+        i--;
+    }
+    strcpy(a[i+1], elemento);
+}
