@@ -14,6 +14,7 @@ int main()
     char names[NAMES_DIM][20];
     int vNames=0;
 
+
     vNames = cargaStrings(names, NAMES_DIM);
     muestraStrings(names, vNames);
 
@@ -111,18 +112,6 @@ void getDni(char d[]){
 }
 
 
-void getAmbos(char a[]){
-    a[0]='\0';
-    char name[];
-    char lastName[];
-
-    getName(name);
-    getLastName(lastName);
-
-    strcat(a, name);
-    strcat(a, ", ");
-    strcat(a, lastName);
-}
 
 void ordenaPorSeleccionString(char a[][20], int v){
     int posMenor=0;
@@ -172,4 +161,45 @@ void insertarOrdenadoString(char a[][20], int v, char elemento[]){
         i--;
     }
     strcpy(a[i+1], elemento);
+}
+
+int muestraPantallaIngreso(){
+    color(23);
+    printf("\n Ingrese el nombre...: ");
+    printf("\n Ingrese el apellido.: ");
+    printf("\n Ingrese el DNI......: ");
+    printf("\n Ingrese la edad.....: ");
+}
+
+int cargaArreglosConGotoXY(int e[], char n[][20], char a[][30], char d[][13], int dim){
+    int i = 0;
+    char opcion = 0;
+
+    while(i<dim && opcion != 27){
+        system("cls");
+        muestraPantallaIngreso();
+        color(23);
+        gotoxy(25,2);
+        fflush(stdin);
+        gets(n[i]);
+
+        gotoxy(25,3);
+        fflush(stdin);
+        gets(a[i]);
+
+        gotoxy(25,4);
+        fflush(stdin);
+        gets(d[i]);
+
+        gotoxy(25,5);
+        scanf("%d", &e[i]);
+
+        i++;
+
+        printf("ESC para salir o cualquier tecla para continuar ...");
+        opcion = getch();
+    }
+
+    return i;
+
 }

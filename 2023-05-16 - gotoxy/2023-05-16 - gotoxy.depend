@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1491400449 source:d:\developer\c\0 utn repositorios\utn-laboratorio1-2023\2023-05-16 - gotoxy\gotoxy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
