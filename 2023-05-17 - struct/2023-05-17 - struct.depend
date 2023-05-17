@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1684361281 source:d:\developer\c\0 utn repositorios\utn-laboratorio1-2023\2023-05-17 - struct\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	"legajo.h"
+
+1684360582 d:\developer\c\0 utn repositorios\utn-laboratorio1-2023\2023-05-17 - struct\legajo.h
+
