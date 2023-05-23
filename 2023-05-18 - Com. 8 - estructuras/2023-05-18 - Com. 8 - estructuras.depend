@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1684452917 source:d:\developer\c\0 utn repositorios\utn-laboratorio1-2023\2023-05-18 - Com. 8 - estructuras\main.c
+	<stdio.h>
+	<stdlib.h>
+	"stDomicilio.h"
+
+1684452789 d:\developer\c\0 utn repositorios\utn-laboratorio1-2023\2023-05-18 - Com. 8 - estructuras\stdomicilio.h
+
+1684452958 source:d:\developer\c\0 utn repositorios\utn-laboratorio1-2023\2023-05-18 - Com. 8 - estructuras\stdomicilio.c
+	<stdio.h>
+	<stdlib.h>
+	"stDomicilio.h"
+
+1684453480 source:d:\developer\c\0 utn repositorios\utn-laboratorio1-2023\2023-05-18 - com. 8 - estructuras\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	"stDomicilio.h"
+
+1684452789 d:\developer\c\0 utn repositorios\utn-laboratorio1-2023\2023-05-18 - com. 8 - estructuras\stdomicilio.h
+
+1684452958 source:d:\developer\c\0 utn repositorios\utn-laboratorio1-2023\2023-05-18 - com. 8 - estructuras\stdomicilio.c
+	<stdio.h>
+	<stdlib.h>
+	"stDomicilio.h"
+

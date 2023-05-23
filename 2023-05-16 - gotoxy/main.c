@@ -7,12 +7,15 @@
 #define ESC 27
 #define CAR 219
 
+int randomRango(int min, int max);
+
 int main()
 {
     char c;
     int x=0;
     int y=0;
     int i=0;
+    printf("%c",CAR);
 
     do{
         c = getch();
@@ -31,14 +34,14 @@ int main()
                     color(44);
                     break;
             case ESC:
-                    x=10;
-                    y=10;
                     while(!kbhit()){
+                        x=randomRango(0,60);
+                        y=randomRango(0,24);
+                        i=randomRango(0,255);
                         gotoxy(x,y);
                         color(i);
                         printf("Hasta la vista Baby.....");
-                        Sleep(500);
-                        i++;
+                        Sleep(250);
                     }
                     break;
             case 72:
@@ -85,4 +88,9 @@ int main()
 
 
     return 0;
+}
+
+
+int randomRango(int min, int max){
+    return rand()%(max-min)+min;
 }
