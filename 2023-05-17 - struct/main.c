@@ -11,20 +11,30 @@ int cargaArregloLegajos(stLegajo legajos[], int dim);
 void muestraLegajos(stLegajo legajos[], int v);
 void cargaArchivoLegajos(char nombreArchivo[]);
 void muestraArchivoDeLegajos(char nombreArchivo[]);
+int archivo2arreglo(char nombreArchivo[], stLegajo legajos[], int dim);
+void arreglo2archivo(stLegajo legajos[], int v, char nombreArchivo[]);
+void arreglo2archivoBis(stLegajo legajos[], int v, char nombreArchivo[]);
+int cuentaDatosArchivo(char nombreArchivo[]);
 
 int main()
 {
     stLegajo legajos[DIM_LEGAJOS];
     int vLegajos=0;
 
-    cargaArchivoLegajos(ARCHI_LEGAJOS);
+    //cargaArchivoLegajos(ARCHI_LEGAJOS);
     printf("\n <<<<<<<< Listado de Legajos del archivo >>>>>>>>");
     muestraArchivoDeLegajos(ARCHI_LEGAJOS);
 //    vLegajos = cargaArregloLegajos(legajos, DIM_LEGAJOS);
+    vLegajos = archivo2arreglo(ARCHI_LEGAJOS, legajos, DIM_LEGAJOS);
 
-
-    printf("\n <<<<<<<< Listado de Legajos >>>>>>>>");
+    printf("\n <<<<<<<< Listado de Legajos del arreglo >>>>>>>>");
     muestraLegajos(legajos, vLegajos);
+
+    int cont;
+    arreglo2archivoBis(legajos, vLegajos, ARCHI_LEGAJOS);
+    cont = cuentaDatosArchivoBis(ARCHI_LEGAJOS)/sizeof(stLegajo);
+    printf("\n <<<<<<<< Listado de Legajos del archivo %d >>>>>>>>", cont);
+    muestraArchivoDeLegajos(ARCHI_LEGAJOS);
     return 0;
 }
 
@@ -67,9 +77,61 @@ void muestraArchivoDeLegajos(char nombreArchivo[]){
     stLegajo legajo;
     FILE* archi = fopen(nombreArchivo, "rb");
     if(archi){
-        while(fread(&legajo, sizeof(stLegajo), 1, archi)>0){
+        while(fread(&legajo, sizeof(stLegajo), 1, archi)>0){  ///NO USAR FEOF()
             muestraUnLegajo(legajo);
         }
         fclose(archi);
     }
+}
+
+int archivo2arreglo(char nombreArchivo[], stLegajo legajos[], int dim){
+    int i=0;
+    FILE* archi = fopen(nombreArchivo, "rb");
+    if(archi){
+        while(fread(&legajos[i], sizeof(stLegajo), 1, archi)>0 && i<dim){
+            i++;
+        }
+        fclose(archi);
+    }
+    return i;
+}
+
+void arreglo2archivo(stLegajo legajos[], int v, char nombreArchivo[]){
+    FILE* archi = fopen(nombreArchivo, "ab");
+    if(archi){
+        for(int i=0;i<v;i++){
+            fwrite(&legajos[i], sizeof(stLegajo), 1, archi);
+        }
+        fclose(archi);
+    }
+}
+
+void arreglo2archivoBis(stLegajo legajos[], int v, char nombreArchivo[]){
+    FILE* archi = fopen(nombreArchivo, "ab");
+    if(archi){
+        fwrite(legajos, sizeof(stLegajo), v, archi);
+        fclose(archi);
+    }
+}
+
+int cuentaDatosArchivo(char nombreArchivo[]){
+    int cont=0;
+    FILE* archi = fopen(nombreArchivo, "rb");
+    if(archi){
+        fseek(archi,0,SEEK_END);
+        cont = ftell(archi)/sizeof(stLegajo);
+        fclose(archi);
+    }
+    return cont;
+}
+
+int cuentaDatosArchivoBis(char nombreArchivo[]){
+    int cont=0;
+    FILE* archi = fopen(nombreArchivo, "rb");
+    if(archi){
+        fseek(archi,0,SEEK_END);
+        cont = ftell(archi);
+        fclose(archi);
+    }
+    return cont;
 }
