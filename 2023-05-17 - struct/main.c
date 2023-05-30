@@ -16,11 +16,18 @@ void arreglo2archivo(stLegajo legajos[], int v, char nombreArchivo[]);
 void arreglo2archivoBis(stLegajo legajos[], int v, char nombreArchivo[]);
 int cuentaDatosArchivo(char nombreArchivo[]);
 stLegajo buscaLegajoEnArchivo(char nombreArchivo[], char apellido[]);
+int algo();
 
 int main()
 {
     stLegajo legajos[DIM_LEGAJOS];
     int vLegajos=0;
+
+    printf("\n algo: %d", algo());
+    printf("\n algo: %d", algo());
+    printf("\n algo: %d", algo());
+    printf("\n algo: %d", algo());
+    printf("\n algo: %d", algo());
 
     //cargaArchivoLegajos(ARCHI_LEGAJOS);
     printf("\n <<<<<<<< Listado de Legajos del archivo >>>>>>>>");
@@ -36,6 +43,8 @@ int main()
     cont = cuentaDatosArchivoBis(ARCHI_LEGAJOS)/sizeof(stLegajo);
     printf("\n <<<<<<<< Listado de Legajos del archivo %d >>>>>>>>", cont);
     muestraArchivoDeLegajos(ARCHI_LEGAJOS);
+
+
 
     return 0;
 }
@@ -160,11 +169,17 @@ stLegajo buscaLegajoEnArchivo(char nombreArchivo[], char apellido[]){
     FILE* archi = fopen(nombreArchivo, "rb");
     if(archi){
         while(flag==0 && fread(&legajo, sizeof(stLegajo), 1, archi)>0){
-            if(strcmp(legajo.apellido, apellido)==0){
+            if(strcmp(legajo.lastName, apellido)==0){
                 flag=1;
             }
         }
         fclose(archi);
     }
     return legajo;
+}
+
+int algo(){
+    static int i = 0;
+    i+=10;
+    return i;
 }
