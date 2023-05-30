@@ -15,6 +15,7 @@ int archivo2arreglo(char nombreArchivo[], stLegajo legajos[], int dim);
 void arreglo2archivo(stLegajo legajos[], int v, char nombreArchivo[]);
 void arreglo2archivoBis(stLegajo legajos[], int v, char nombreArchivo[]);
 int cuentaDatosArchivo(char nombreArchivo[]);
+stLegajo buscaLegajoEnArchivo(char nombreArchivo[], char apellido[]);
 
 int main()
 {
@@ -35,6 +36,7 @@ int main()
     cont = cuentaDatosArchivoBis(ARCHI_LEGAJOS)/sizeof(stLegajo);
     printf("\n <<<<<<<< Listado de Legajos del archivo %d >>>>>>>>", cont);
     muestraArchivoDeLegajos(ARCHI_LEGAJOS);
+
     return 0;
 }
 
@@ -134,4 +136,35 @@ int cuentaDatosArchivoBis(char nombreArchivo[]){
         fclose(archi);
     }
     return cont;
+}
+
+int buscaEnArchivo(char nombreArchivo[], char dni[]){
+    int flag = 0;
+    stLegajo legajo;
+    FILE* archi = fopen(nombreArchivo, "rb");
+    if(archi){
+        while(flag==0 && fread(&legajo, sizeof(stLegajo), 1, archi)>0){
+            if(strcmp(legajo.dni, dni)==0){
+                flag=1;
+            }
+        }
+        fclose(archi);
+    }
+    return flag;
+}
+
+stLegajo buscaLegajoEnArchivo(char nombreArchivo[], char apellido[]){
+    int flag=0;
+    stLegajo legajo;
+    legajo.edad = -1;
+    FILE* archi = fopen(nombreArchivo, "rb");
+    if(archi){
+        while(flag==0 && fread(&legajo, sizeof(stLegajo), 1, archi)>0){
+            if(strcmp(legajo.apellido, apellido)==0){
+                flag=1;
+            }
+        }
+        fclose(archi);
+    }
+    return legajo;
 }
